@@ -35,16 +35,20 @@ function App() {
   return (
     <div className="App">
       <h1>Radwimps</h1>
-      <p>
-        Radwimps is a Japanese rock band formed in 2001. Their music combines elements of pop, alternative rock, and emo. They are known for their unique blend of rock and emotional lyrics. They are also popular for writing the songs and music for Makoto Shinkai's animation movies.
-      </p>
+      <h3>
+        <img src="/radwimps.jpeg" alt="Radwimps band image"/>
+        <p>
+          Radwimps is a Japanese rock band formed in 2001. Their music combines elements of pop, alternative rock, and emo. They are known for their unique blend of rock and emotional lyrics. They are also popular for writing the songs and music for Makoto Shinkai's animation movies.
+        </p>
+      </h3>
+
       <h2>Albums</h2>
       <div className="albums">
       {albums.map((album, index) => (
         <div key={index} className="album">
           <img src={`/${album.cover}`} />
           <div>
-            <p>{album.title}</p>
+            <p>Album name: {album.title}</p>
             <p>Released: {album.releaseDate}</p>
           </div>
           <p>Songs:</p>
@@ -65,7 +69,7 @@ function App() {
           <li key={song}>{song}</li>
         ))}
       </ul>
-      <h2>Give Feedback</h2>
+      <h2>Write the band a message!</h2>
       <form>
         <input type="text" placeholder="Name" />
         <textarea placeholder="Message" />
