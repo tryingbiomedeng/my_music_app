@@ -18,6 +18,13 @@ p {
   text-align: center;
 }
 
+h3 img {
+  width: 400px;
+  display: block;
+  margin: 0 auto; 
+  border-radius: 200px;
+}
+
 .albums {
   display: flex;
   flex-wrap: wrap;
