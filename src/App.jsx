@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AlbumItem from './components/AlbumItem/index';
 import LikedSongs from './components/LikedSongs/index';
 
@@ -34,6 +34,21 @@ function App() {
     },
   ]
 
+  const [lyrics, setLyrics] = useState('')
+
+  useEffect(() => {
+    const apiUrl = 'https://private-anon-9b8649bc93-lyricsovh.apiary-mock.com/v1/Radwimps/Sparkle'
+
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        setLyrics(data.lyrics)
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error)
+      })
+  }, [])
+
   return (
     <div className="App">
       <h1>Radwimps</h1>
@@ -56,6 +71,10 @@ function App() {
         ))}
       </div>
       <LikedSongs likedSongs={likedSongs} />
+
+      <h2>Song Lyrics</h2>
+      <pre>{lyrics}</pre>
+
       <h2>Write the band a message!</h2>
       <form>
         <input type="text" placeholder="Name" />
