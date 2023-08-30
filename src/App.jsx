@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import React, { useState } from 'react';
+import AlbumItem from './components/AlbumItem/index';
+import LikedSongs from './components/LikedSongs/index';
 
 function App() {
   const [likedSongs, setLikedSongs] = useState([])
@@ -44,31 +46,16 @@ function App() {
 
       <h2>Albums</h2>
       <div className="albums">
-      {albums.map((album, index) => (
-        <div key={index} className="album">
-          <img src={`/${album.cover}`} />
-          <div>
-            <p>Album name: {album.title}</p>
-            <p>Released: {album.releaseDate}</p>
-          </div>
-          <p>Songs:</p>
-          {album.songs.map((song, songIndex) => (
-            <div key={songIndex}>
-              {song}{' '}
-              <button onClick={() => handleLike(song)}>
-                {likedSongs.includes(song) ? 'Unlike' : 'Like'}
-              </button>
-            </div>
-          ))}
-        </div>
-      ))}
-      </div>
-      <h2>Liked Songs</h2>
-      <ul>
-        {likedSongs.map((song) => (
-          <li key={song}>{song}</li>
+        {albums.map((album, index) => (
+          <AlbumItem
+            key={index}
+            album={album}
+            likedSongs={likedSongs}
+            handleLike={handleLike}
+          />
         ))}
-      </ul>
+      </div>
+      <LikedSongs likedSongs={likedSongs} />
       <h2>Write the band a message!</h2>
       <form>
         <input type="text" placeholder="Name" />
